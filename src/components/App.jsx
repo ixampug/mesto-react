@@ -3,6 +3,7 @@ import Main from "./Main";
 import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
 import { useState } from "react";
+import ImagePopup from "./ImagePopup";
 
 export default function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -118,44 +119,7 @@ export default function App() {
 
       <Footer />
 
-      {/* <div className="popup popup_edit" id="popup-edit">
-    <div className="popup__container">
-      <button className="popup__close popup__close_edit" type="button" />
-      <h2 className="popup__title">Редактировать профиль</h2>
-      <form
-        className="popup__form"
-        id="formEdit"
-        name="formEdit"
-        method="post"
-        noValidate=""
-      >
-        <input
-          type="text"
-          id="name-input"
-          className="popup__input popup__input_type_name"
-          name="name"
-          minLength={2}
-          maxLength={40}
-          required=""
-        />
-        <span className="popup__error" id="name-input-error" />
-        <input
-          type="text"
-          id="job-input"
-          className="popup__input popup__input_type_job"
-          name="about"
-          minLength={2}
-          maxLength={200}
-          required=""
-        />
-        <span className="popup__error" id="job-input-error" />
-        <button className="popup__submit" type="submit">
-          Сохранить
-        </button>
-      </form>
-    </div>
-  </div>
-
+      <ImagePopup card={selectedCard} onClose={closeAllPopups} />
 
 
 
@@ -182,7 +146,7 @@ export default function App() {
  
   <template id="card-template" />
   <p />
-   */}
+   
     </div>
   );
 }

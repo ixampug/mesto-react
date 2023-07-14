@@ -17,15 +17,19 @@ export default function Main({ onEditProfile, onAddPlace, onEditAvatar }) {
         setUserName(userInfo.name);
         setUserDescription(userInfo.about);
         setUserAvatar(userInfo.avatar);
+      })
+      .catch((error) => {
+        console.log("ошибка", error);
       });
-      
 
     api
       .getInitialCards()
       .then((initialCards) => {
         setCards(initialCards);
+      })
+      .catch((error) => {
+        console.log("ошибкааа", error);
       });
-      
   }, []);
 
   function handleCardClick(card) {
@@ -67,16 +71,15 @@ export default function Main({ onEditProfile, onAddPlace, onEditAvatar }) {
       <section className="cards">
         {cards.map((card) => (
           <Card
-            key={card.id}
+            key={card._id}
             name={card.name}
             link={card.link}
             likes={card.likes}
             onCardClick={handleCardClick}
-    onClose={closeAllPopups}
+            onClose={closeAllPopups}
           />
         ))}
       </section>
-      <ImagePopup card={selectedCard} onClose={closeAllPopups} />
     </main>
   );
 }
@@ -113,7 +116,7 @@ export default function Main({ onEditProfile, onAddPlace, onEditAvatar }) {
 //             <img
 //               className="profile__photo"
 //             //   src={userAvatar}
-//             style={{ backgroundImage: `url(${userAvatar})` }} 
+//             style={{ backgroundImage: `url(${userAvatar})` }}
 //               alt="Фотография профиля"
 //             />
 //           </button>

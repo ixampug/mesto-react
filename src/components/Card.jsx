@@ -6,7 +6,7 @@ export default function Card({ name, link, likes, onCardClick, onClose }) {
       
       return (
         <div className="card">
-          <button className="card__photo" style={{ backgroundImage: `url(${link})` }} alt={name} onClick={handleClick}></button>
+          <img className="card__photo" style={{ backgroundImage: `url(${link})` }} alt={name} onClick={handleClick} />
           <div className="card__table">
             <h2 className="card__name">{name}</h2>
             <div className="card__like-container">
