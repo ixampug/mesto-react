@@ -121,32 +121,28 @@ export default function App() {
 
       <ImagePopup card={selectedCard} onClose={closeAllPopups} />
 
+      <div className="popup popup_fullview" id="popup-open-image">
+        <div className="popup__fullscreen">
+          <img alt="" src="#" className="popup__picture" />
+          <h3 className="popup__subtitle" />
+          <button
+            className="popup__close popup__close_fullview"
+            type="button"
+          />
+        </div>
+      </div>
+      <div className="popup" id="popup-confirm">
+        <div className="popup__container">
+          <h2 className="popup__title">Вы уверены?</h2>
+          <button className="popup__submit popup__submit_confirm" type="submit">
+            Да
+          </button>
+          <button className="popup__close" type="button" />
+        </div>
+      </div>
 
-
-
-
-
-
-  <div className="popup popup_fullview" id="popup-open-image">
-    <div className="popup__fullscreen">
-      <img alt="" src="#" className="popup__picture" />
-      <h3 className="popup__subtitle" />
-      <button className="popup__close popup__close_fullview" type="button" />
-    </div>
-  </div>
-  <div className="popup" id="popup-confirm">
-    <div className="popup__container">
-      <h2 className="popup__title">Вы уверены?</h2>
-      <button className="popup__submit popup__submit_confirm" type="submit">
-        Да
-      </button>
-      <button className="popup__close" type="button" />
-    </div>
-  </div>
- 
-  <template id="card-template" />
-  <p />
-   
+      <template id="card-template" />
+      <p />
     </div>
   );
 }

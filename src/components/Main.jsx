@@ -51,7 +51,7 @@ export default function Main({ onEditProfile, onAddPlace, onEditAvatar }) {
           >
             <img
               className="profile__photo"
-              style={{ backgroundImage: `url(${userAvatar})` }}
+              src={userAvatar}
               alt="Фотография профиля"
             />
           </button>
