@@ -66,25 +66,15 @@ class Api {
     }).then(this._checkResponse)
   }
   
-
- 
- 
-
+  toggleLike(cardId, isLiked) {
+    const method = isLiked ? "DELETE" : "PUT";
   
-
-  putLike(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-      method: "PUT",
+      method: method,
       headers: this._headers,
     }).then(this._checkResponse);
   }
-
-  deleteLike(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-      method: "DELETE",
-      headers: this._headers,
-    }).then(this._checkResponse);
-  }
+  
 }
 
 const api = new Api({

@@ -22,14 +22,3 @@ export default function ImagePopup(props) {
     </div>
   );
 }
-
-// <div className="popup popup_fullview" id="popup-open-image">
-//           <div className="popup__fullscreen">
-//             <img alt="" src="#" className="popup__picture" />
-//             <h3 className="popup__subtitle" />
-//             <button
-//               className="popup__close popup__close_fullview"
-//               type="button"
-//             />
-//           </div>
-//         </div>

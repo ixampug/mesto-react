@@ -58,7 +58,7 @@ export default function App() {
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
 
     // Отправляем запрос в API и получаем обновлённые данные карточки
-    api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
+    api.toggleLike(card._id, !isLiked).then((newCard) => {
       setCards((cards) => cards.map((c) => (c._id === card._id ? newCard : c)));
     });
   }
@@ -76,7 +76,7 @@ export default function App() {
 
   function handleUpdateAvatar({ avatar }) {
     api
-      .setAvatar({ avatar })
+      .patchAvatar({ avatar })
       .then((userData) => {
         setCurrentUser(userData);
         closeAllPopups();
@@ -88,7 +88,7 @@ export default function App() {
 
   function handleAddPlaceSubmit({ name, link }) {
     api
-      .addCard({ name, link })
+      .postCard({ name, link })
       .then((newCard) => {
         setCards([newCard, ...cards]);
         closeAllPopups();
@@ -100,7 +100,7 @@ export default function App() {
 
   function handleUpdateUser({ name, about }) {
     api
-      .setUser({ name, about })
+      .patchInfo({ name, about })
       .then((userData) => {
         setCurrentUser(userData);
         closeAllPopups();
@@ -151,22 +151,9 @@ export default function App() {
 
         <ImagePopup card={selectedCard} onClose={closeAllPopups} />
 
-        <template id="card-template" />
+        
         <p />
       </div>
     </CurrentUserContext.Provider>
   );
 }
-
-// <div className="popup" id="popup-confirm">
-// <div className="popup__container">
-//   <h2 className="popup__title">Вы уверены?</h2>
-//   <button
-//     className="popup__submit popup__submit_confirm"
-//     type="submit"
-//   >
-//     Да
-//   </button>
-//   <button className="popup__close" type="button" />
-// </div>
-// </div>
