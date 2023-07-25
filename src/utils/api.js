@@ -47,14 +47,11 @@ class Api {
   }
 
   
-  postCard(name, link) {
+  postCard(card) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
-      body: JSON.stringify({
-        name: name,
-        link: link,
-      }),
+      body: JSON.stringify(card),
     }).then(this._checkResponse);
   }
 
@@ -72,8 +69,18 @@ class Api {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: method,
       headers: this._headers,
-    }).then(this._checkResponse);
+    })
+    .then(this._checkResponse)
+    .then((data) => {
+      console.log("Ответ от API при переключении лайка:", data);
+      return data;
+    })
+    .catch((error) => {
+      console.error("Ошибка при переключении лайка:", error);
+      throw error; // Прокидываем ошибку дальше, чтобы компоненты могли её обработать
+    });
   }
+  
   
 }
 

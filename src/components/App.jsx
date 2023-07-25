@@ -52,16 +52,20 @@ export default function App() {
   function handleCardClick(card) {
     openCardPopup(card);
   }
-
+  
   function handleCardLike(card) {
-    // Снова проверяем, есть ли уже лайк на этой карточке
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
-
-    // Отправляем запрос в API и получаем обновлённые данные карточки
-    api.toggleLike(card._id, !isLiked).then((newCard) => {
-      setCards((cards) => cards.map((c) => (c._id === card._id ? newCard : c)));
-    });
+  
+    api.toggleLike(card._id, !isLiked)
+      .then((newCard) => {
+        console.log("Обновленные данные карточки:", newCard);
+        setCards((cards) => cards.map((c) => (c._id === card._id ? newCard : c)));
+      })
+      .catch((error) => {
+        console.error("Ошибка при переключении лайка:", error);
+      });
   }
+  
 
   function handleCardDelete(card) {
     api
@@ -86,9 +90,9 @@ export default function App() {
       });
   }
 
-  function handleAddPlaceSubmit({ name, link }) {
+  function handleAddPlaceSubmit(card) {
     api
-      .postCard({ name, link })
+      .postCard(card)
       .then((newCard) => {
         setCards([newCard, ...cards]);
         closeAllPopups();
@@ -151,7 +155,6 @@ export default function App() {
 
         <ImagePopup card={selectedCard} onClose={closeAllPopups} />
 
-        
         <p />
       </div>
     </CurrentUserContext.Provider>
